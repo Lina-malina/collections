@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>Register</h1>
+  <p>Already a member? Please <a routerLink="/login">log in</a> instead.</p>
+  <div class="form-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Full name</mat-label>
+      <input matInput type="text" placeholder="Enter your name" [(ngModel)]="credentials.name">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Email address</mat-label>
+      <input matInput type="email" placeholder="Enter email" [(ngModel)]="credentials.email">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" placeholder="Password" [(ngModel)]="credentials.password">
+    </mat-form-field>
+    <button mat-raised-button class="reg-btn" color="primary" (click)="register()">Register!</button>
+  </div>
+</div>
+

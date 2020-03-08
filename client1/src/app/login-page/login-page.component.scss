@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  background-color: gray;
+  width: 100%;
+  max-width: 400px;
+}
+.sign-btn {
+  width: 100px;
+  margin: 0px auto 10px;
+}
+a {
+  text-decoration: none;
+}
