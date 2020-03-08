@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
+const path = require('path');
 
 require('./models/db');
 require('./config/passport');
@@ -20,6 +21,12 @@ app.use(cors());
 
 app.use(passport.initialize());
 app.use('/api', routesApi);
+
+app.use(express.static(__dirname + '/client/dist/client'));
+
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname + '/client/dist/client/index.html'));
+});
 
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
