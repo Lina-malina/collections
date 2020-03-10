@@ -1,5 +1,10 @@
-<p>{{auth.getUserDetails()?.name}} is logged in.</p>
-<button mat-stroked-button color="primary" *ngIf="auth.isLoggedIn()"><a (click)="auth.logout()">Logout</a></button>
+<nav>
+  <button mat-stroked-button color="primary" ><a routerLink="/notes" routerLinkActive="active">Notes</a></button>
+  <div class="logo-container">
+    <p>{{auth.getUserDetails()?.name | titlecase}} is logged in.</p>
+    <button mat-stroked-button color="primary" *ngIf="auth.isLoggedIn()"><a (click)="auth.logout()">Logout</a></button>
+  </div>
+</nav>
 <mat-toolbar>
   <button mat-flat-button color="primary" (click)="disableUsers()">Disable</button>
   <button mat-flat-button color="accent" (click)="enableUsers()">Enable</button>

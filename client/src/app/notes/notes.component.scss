@@ -1,0 +1,59 @@
+.notes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
+}
+mat-card {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding-right: 35px;
+  max-width: 200px;
+  max-height: 200px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+i {
+  font-size: 2rem;
+}
+.add-btn {
+  position: fixed;
+  right: 20%;
+}
+.note-form-container {
+  background-color: gray;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: 0 auto;
+}
+.mat-card-actions .mat-raised-button:first-child {
+  margin-left: 20px;
+}
+.color {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+.note {
+  position: relative;
+}
+.material-icons.delete,
+.material-icons.edit {
+  font-size: 1rem;
+}
+.close-btn {
+  position: absolute;
+  top: 0;
+  right: -5px;
+}
+.edit-btn {
+  position: absolute;
+  top: 30px;
+  right: -5px;
+}
+.cdk-drag-placeholder {
+  opacity: 0;
+}
