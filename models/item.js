@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 
-const medicineSchema = new mongoose.Schema({
+const itemSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
     },
     isGeneric: Boolean,
-    type: String,
+    form: String,
     description: String,
     authorId: Number
 })
 
-mongoose.model('Medicine', medicineSchema)
+mongoose.model('Item', itemSchema)

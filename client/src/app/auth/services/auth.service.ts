@@ -30,9 +30,8 @@ export class AuthService {
   }
   public getUserDetails(): IUserDetails {
     const token = this.getToken();
-    let payload;
     if (token) {
-      payload = token.split('.')[1];
+      let payload = token.split('.')[1];
       payload = window.atob(payload);
       return JSON.parse(payload);
     } else {
@@ -47,15 +46,8 @@ export class AuthService {
       return false;
     }
   }
-
-  private request(method: 'post'|'get', type: 'login'|'register'|'users', user?: ITokenPayload): Observable<any> {
-    let base;
-    if (method === 'post') {
-      base = this.http.post(`/api/${type}`, user);
-    } else {
-      base = this.http.get(`/api/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
-    }
-    const request = base.pipe(
+  public register(user: ITokenPayload): Observable<any> {
+    return this.http.post('/api/register', user).pipe(
       map((data: ITokenResponse) => {
         if (data.token) {
           this.saveToken(data.token);
@@ -63,12 +55,15 @@ export class AuthService {
         return data;
       })
     );
-    return request;
-  }
-  public register(user: ITokenPayload): Observable<any> {
-    return this.request('post', 'register', user);
   }
   public login(user: ITokenPayload): Observable<any> {
-    return this.request('post', 'login', user);
+    return this.http.post('/api/login', user).pipe(
+      map((data: ITokenResponse) => {
+        if (data.token) {
+          this.saveToken(data.token);
+        }
+        return data;
+      })
+    );
   }
 }

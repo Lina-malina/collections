@@ -1,5 +1,6 @@
 <p>Main page</p>
 <div class="logo-container">
-  <p>{{auth.getUserDetails()?.name | titlecase}} is logged in.</p>
+  <p><a routerLink="/collection">{{auth.getUserDetails()?.name | titlecase}}</a> is logged in.</p>
   <button mat-stroked-button color="primary" *ngIf="auth.isLoggedIn()"><a (click)="auth.logout()">Logout</a></button>
 </div>
+<router-outlet></router-outlet>
