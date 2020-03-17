@@ -1,0 +1,5 @@
+<p>Main page</p>
+<div class="logo-container">
+  <p>{{auth.getUserDetails()?.name | titlecase}} is logged in.</p>
+  <button mat-stroked-button color="primary" *ngIf="auth.isLoggedIn()"><a (click)="auth.logout()">Logout</a></button>
+</div>

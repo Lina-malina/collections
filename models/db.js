@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 let gracefulShutdown;
-let dbURI = 'mongodb://localhost/meanAuth';
+
+let dbURI = 'mongodb://localhost/collections';
 if (process.env.NODE_ENV === 'production') {
   dbURI = process.env.MONGODB_URI;
 }
-
 mongoose.connect(dbURI);
 
 mongoose.connection.on('connected', function() {
@@ -23,19 +23,16 @@ gracefulShutdown = function(msg, callback) {
     callback();
   });
 };
-
 process.once('SIGUSR2', function() {
   gracefulShutdown('nodemon restart', function() {
     process.kill(process.pid, 'SIGUSR2');
   });
 });
-
 process.on('SIGINT', function() {
   gracefulShutdown('app termination', function() {
     process.exit(0);
   });
 });
-
 process.on('SIGTERM', function() {
   gracefulShutdown('Heroku app termination', function() {
     process.exit(0);
@@ -43,4 +40,4 @@ process.on('SIGTERM', function() {
 });
 
 require('./users');
-require('./notes');
+require('./medicine')

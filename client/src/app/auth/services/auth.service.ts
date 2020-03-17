@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { IUserDetails } from '../models/user-details.model';
 import { ITokenPayload } from '../models/token-payload.model';
 import { ITokenResponse } from '../models/token-response.model';
+import { IUserDetails } from '../models/user-details.model';
 
 @Injectable()
 export class AuthService {
