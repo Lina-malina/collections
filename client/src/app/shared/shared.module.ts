@@ -9,7 +9,8 @@ import { MatInputModule} from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth-interceptor';
-
+import { MatRadioModule } from '@angular/material/radio';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -22,6 +23,8 @@ import { AuthInterceptor } from './auth-interceptor';
     MatButtonModule,
     MatInputModule,
     MatCardModule,
+    MatRadioModule,
+    MatTableModule,
     HttpClientModule
   ],
   exports: [
@@ -31,6 +34,8 @@ import { AuthInterceptor } from './auth-interceptor';
     MatButtonModule,
     MatInputModule,
     MatCardModule,
+    MatRadioModule,
+    MatTableModule,
     HttpClientModule
   ],
   providers: [

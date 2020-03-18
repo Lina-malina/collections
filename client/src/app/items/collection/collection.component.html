@@ -1,1 +1,24 @@
-<p>collection works!</p>
+<nav>
+  Collection name
+  <button mat-icon-button class="add-btn"><i class="material-icons">add_box</i></button>
+</nav>
+<div class="collection-container">
+  <mat-card *ngFor="let item of items">
+    <button mat-icon-button class="edit-btn">
+      <i class="material-icons edit">edit</i>
+    </button>
+    <button mat-icon-button class="delete-btn">
+      <i class="material-icons delete">delete</i>
+    </button>
+    <mat-card-title>{{item.name}}</mat-card-title>
+    <mat-card-subtitle *ngIf="item.isGeneric">Generic</mat-card-subtitle>
+    <mat-card-subtitle *ngIf="!item.isGeneric">Brand name</mat-card-subtitle>
+    <mat-card-content>
+      <p>Medicine form: {{item.form}}</p>
+      <p>Medicine class: {{item.description}}</p>
+    </mat-card-content>
+    <mat-card-footer>By: {{item.authorId}}</mat-card-footer>
+  </mat-card>
+</div>
+
+

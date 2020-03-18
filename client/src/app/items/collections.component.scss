@@ -1,4 +1,4 @@
-.collection-container {
+.collections-container {
   display: flex;
   justify-content: space-around;
 }
@@ -9,13 +9,8 @@ mat-card {
   position: relative;
   padding-right: 30px;
 }
-.edit-btn {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-}
 .delete-btn {
   position: absolute;
   right: 0px;
-  top: 30px;
+  top: 0px;
 }

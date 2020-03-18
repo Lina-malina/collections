@@ -10,6 +10,7 @@ import { UsersManagementService } from '../../auth/services/users-management.ser
 })
 export class MainPageComponent implements OnInit {
   public users: IUser[];
+  public columnsToDisplay: string[] = ['id', 'name', 'email', 'collections'];
 
   constructor(public auth: AuthService, public usersManagement: UsersManagementService) { }
 
