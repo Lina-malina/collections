@@ -1,0 +1,18 @@
+<div class="collection-form-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Collection name</mat-label>
+    <input matInput [(ngModel)]="newCollection.name">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Collection description</mat-label>
+    <textarea matInput [(ngModel)]="newCollection.description"></textarea>
+  </mat-form-field>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" *ngIf="isCreationMode" (click)="addCollection()">
+      Create collection
+    </button>
+    <button mat-raised-button color="primary" *ngIf="!isCreationMode" (click)="editCollection()">
+      Edit collection
+    </button>
+  </mat-card-actions>
+</div>

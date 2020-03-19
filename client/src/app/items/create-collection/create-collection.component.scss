@@ -1,0 +1,13 @@
+.collection-form-container {
+  background-color: gray;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: 0 auto;
+}
+mat-card-actions {
+  text-align: center;
+}
+.mat-card-actions .mat-raised-button:first-child {
+  margin-bottom: 10px;
+}

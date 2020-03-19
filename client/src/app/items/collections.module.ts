@@ -6,13 +6,15 @@ import { CollectionComponent } from './collection/collection.component';
 import { SharedModule } from '../shared/shared.module';
 import { CreateItemComponent } from './create-item/create-item.component';
 import { CollectionsComponent } from './collections.component';
+import { CreateCollectionComponent } from './create-collection/create-collection.component';
 
 
 @NgModule({
   declarations: [
     CollectionsComponent,
     CollectionComponent,
-    CreateItemComponent
+    CreateItemComponent,
+    CreateCollectionComponent
   ],
   imports: [
     CommonModule,

@@ -3,5 +3,5 @@ export interface IItem {
   isGeneric: boolean;
   form: string;
   description: string;
-  authorId: number;
+  authorId: string;
 }

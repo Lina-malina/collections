@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IItem } from '../models/item.model';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-create-item',
@@ -12,10 +13,11 @@ export class CreateItemComponent implements OnInit {
     name: '',
     isGeneric: true,
     form: '',
-    description: ''
+    description: '',
+    authorId: this.auth.getUserDetails()._id
   };
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
   }

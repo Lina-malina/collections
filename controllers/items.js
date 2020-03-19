@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Item = mongoose.model('Item');
 
 module.exports.getItems = function(req, res) {
-    Item.find(function(err, items) {
+    Item.find({collectionId: req.query.collectionId}, function(err, items) {
         res.status(200).json(items);
     })
 };
@@ -12,6 +12,7 @@ module.exports.addItem = function(req, res) {
         isGeneric: req.body.isGeneric,
         form: req.body.form,
         description: req.body.description,
+        collectionId: req.body.collectionId,
         authorId: req.payload._id
     });
     item.save(function() {

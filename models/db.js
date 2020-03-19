@@ -40,4 +40,5 @@ process.on('SIGTERM', function() {
 });
 
 require('./users');
+require('./collection')
 require('./item');

@@ -1,15 +1,19 @@
-<h2>User Collections</h2>
+<h2>{{auth.getUserDetails()?.name | titlecase}} Collections</h2>
+<button mat-raised-button color="primary" routerLink="/collections/new">Add</button>
 <div class="collections-container">
-  <mat-card>
-    <button mat-icon-button class="delete-btn">
+  <mat-card *ngFor="let collection of collections">
+    <button mat-icon-button class="edit-btn" [routerLink]="['/collections/edit', collection._id]">
+      <i class="material-icons edit">edit</i>
+    </button>
+    <button mat-icon-button class="delete-btn" (click)="deleteCollection(collection._id)">
       <i class="material-icons delete">delete</i>
     </button>
-    <mat-card-title>Collection name</mat-card-title>
+    <mat-card-title>{{collection.name}}</mat-card-title>
     <mat-card-content>
-      <p>Collection description</p>
+      <p>{{collection.description}}</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" routerLink="/collections/1">Show</button>
+      <button mat-raised-button color="primary" [routerLink]="['/collections', collection._id]">Show</button>
     </mat-card-actions>
   </mat-card>
 </div>

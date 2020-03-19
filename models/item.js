@@ -8,7 +8,8 @@ const itemSchema = new mongoose.Schema({
     isGeneric: Boolean,
     form: String,
     description: String,
-    authorId: Number
-})
+    authorId: String,
+    collectionId: String
+});
 
-mongoose.model('Item', itemSchema)
+mongoose.model('Item', itemSchema);
