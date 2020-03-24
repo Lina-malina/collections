@@ -1,0 +1,45 @@
+<mat-toolbar>
+  <button mat-flat-button color="primary" (click)="disableUsers()">Disable</button>
+  <button mat-flat-button color="accent" (click)="enableUsers()">Enable</button>
+  <button mat-flat-button color="warn" (click)="deleteUsers()">Delete</button>
+  <button mat-flat-button color="basic" (click)="makeAdmin()">Make an admin</button>
+  <button mat-flat-button color="basic" (click)="disableAdmin()">Disable an admin</button>
+</mat-toolbar>
+<table mat-table [dataSource]="users">
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> User name </th>
+    <td mat-cell *matCellDef="let user"> {{user.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> User email </th>
+    <td mat-cell *matCellDef="let user"> {{user.email}} </td>
+  </ng-container>
+  <ng-container matColumnDef="page">
+    <th mat-header-cell *matHeaderCellDef> User page </th>
+    <td mat-cell *matCellDef="let user"> <a [routerLink]="['/user-page', user._id]">page</a> </td>
+  </ng-container>
+  <ng-container matColumnDef="isActive">
+    <th mat-header-cell *matHeaderCellDef>User status </th>
+    <td mat-cell *matCellDef="let user"> {{user.isActive | userStatus}} </td>
+  </ng-container>
+  <ng-container matColumnDef="isAdmin">
+    <th mat-header-cell *matHeaderCellDef>User is admin </th>
+    <td mat-cell *matCellDef="let user"> {{user.isAdmin | admin}} </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+</table>

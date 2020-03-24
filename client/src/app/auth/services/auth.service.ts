@@ -26,7 +26,7 @@ export class AuthService {
   public logout(): void {
     this.token = '';
     localStorage.removeItem('mean-token');
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/main');
   }
   public getUserDetails(): IUserDetails {
     const token = this.getToken();

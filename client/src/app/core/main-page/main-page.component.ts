@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../auth/services/auth.service';
-import { IUser } from '../../auth/models/user.model';
-import { UsersManagementService } from '../../auth/services/users-management.service';
+import { ICollection } from 'src/app/items/models/collection.model';
+import { CollectionsManagementService } from 'src/app/items/services/collections-management.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-main-page',
@@ -9,12 +9,11 @@ import { UsersManagementService } from '../../auth/services/users-management.ser
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent implements OnInit {
-  public users: IUser[];
-  public columnsToDisplay: string[] = ['id', 'name', 'email', 'collections'];
+  public collections: ICollection[] = [];
 
-  constructor(public auth: AuthService, public usersManagement: UsersManagementService) { }
+  constructor(public auth: AuthService , private collManagement: CollectionsManagementService) { }
 
   public ngOnInit() {
-    this.usersManagement.users().subscribe(users => this.users = users);
+    this.collManagement.getCollections().subscribe(coll => this.collections = coll);
   }
 }

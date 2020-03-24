@@ -6,6 +6,11 @@ module.exports.getItems = function(req, res) {
         res.status(200).json(items);
     })
 };
+module.exports.getItemById = function(req, res) {
+    Item.findOne({ _id: req.params.id }, function(err, items) {
+        res.status(200).json(items);
+    })
+};
 module.exports.addItem = function(req, res) {
     const item = new Item({
         name: req.body.name,
@@ -13,7 +18,8 @@ module.exports.addItem = function(req, res) {
         form: req.body.form,
         description: req.body.description,
         collectionId: req.body.collectionId,
-        authorId: req.payload._id
+        authorId: req.payload._id,
+        authorName: req.payload.name
     });
     item.save(function() {
         res.status(200).json();

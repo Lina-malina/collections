@@ -9,7 +9,8 @@ const collectionSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    authorId: String
+    authorId: String,
+    authorName: String
 });
 
 mongoose.model('Collection', collectionSchema);

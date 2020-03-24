@@ -1,22 +1,22 @@
 <div class="item-form-container">
   <mat-form-field appearance="fill">
     <mat-label>Medicine name</mat-label>
-    <input matInput [(ngModel)]="item.name">
+    <input matInput [(ngModel)]="newItem.name">
   </mat-form-field>
-  <mat-radio-group aria-label="Select an option" [(ngModel)]="item.isGeneric">
+  <mat-radio-group aria-label="Select an option" [(ngModel)]="newItem.isGeneric">
     <mat-radio-button value="true">Generic</mat-radio-button>
     <mat-radio-button value="false">Brand name</mat-radio-button>
   </mat-radio-group>
   <mat-form-field appearance="fill">
     <mat-label>Medicine form</mat-label>
-    <input matInput [(ngModel)]="item.form">
+    <input matInput [(ngModel)]="newItem.form">
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Medicine class</mat-label>
-    <input matInput [(ngModel)]="item.description">
+    <input matInput [(ngModel)]="newItem.description">
   </mat-form-field>
   <mat-card-actions>
-    <!-- <button mat-raised-button color="primary" *ngIf="isCreationMode">Create note</button>
-    <button mat-raised-button color="primary" *ngIf="!isCreationMode">Edit note</button> -->
+    <button mat-raised-button color="primary" *ngIf="isCreationMode" (click)="addItem()">Create item</button>
+    <button mat-raised-button color="primary" *ngIf="!isCreationMode" (click)="editItem()">Edit item</button>
   </mat-card-actions>
 </div>

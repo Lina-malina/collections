@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { IItem } from '../models/item.model';
 import { ItemsManagementService } from '../services/items-management.service';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { CollectionsManagementService } from '../services/collections-management.service';
+import { ICollection } from '../models/collection.model';
 
 @Component({
   selector: 'app-collection',
@@ -10,11 +13,27 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CollectionComponent implements OnInit {
   public items: IItem[] = [];
+  public collectionId: string = this.route.snapshot.paramMap.get('id');
+  public collectionAuthorId: string;
 
-  constructor(private itemsManagement: ItemsManagementService, private route: ActivatedRoute) { }
+  constructor(
+    private itemsManagement: ItemsManagementService,
+    private collManagement: CollectionsManagementService,
+    private route: ActivatedRoute,
+    private auth: AuthService
+    ) { }
 
   ngOnInit() {
-    this.itemsManagement.getItems(this.route.snapshot.paramMap.get('id')).subscribe(items => this.items = items);
+    this.itemsManagement.getItems(this.collectionId).subscribe(items => this.items = items);
+    if (this.auth.isLoggedIn()) {
+      this.collManagement.getCollectionById(this.collectionId).subscribe(coll => this.collectionAuthorId = coll.authorId);
+    }
   }
-
+  public hasAccess(): boolean {
+    return this.auth.isLoggedIn() && (this.auth.getUserDetails().isAdmin || this.auth.getUserDetails()._id === this.collectionAuthorId);
+  }
+  public deleteItem(id) {
+    this.itemsManagement.deleteItem(id).subscribe(() =>
+      this.itemsManagement.getItems(this.collectionId).subscribe(items => this.items = items));
+  }
 }

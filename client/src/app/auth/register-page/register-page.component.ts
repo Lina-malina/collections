@@ -20,7 +20,7 @@ export class RegisterPageComponent implements OnInit {
 
   register() {
     this.auth.register(this.credentials).subscribe(() => {
-      this.router.navigateByUrl('/users');
+      this.router.navigateByUrl('/main');
     }, (err) => {
       console.error(err);
     });

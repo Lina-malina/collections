@@ -21,7 +21,7 @@ export class LoginPageComponent implements OnInit {
 
   login() {
     this.auth.login(this.credentials).subscribe(() => {
-      this.router.navigateByUrl('/users');
+      this.router.navigateByUrl('/main');
     }, (err) => {
       this.errorMessage = err.error.message;
     });

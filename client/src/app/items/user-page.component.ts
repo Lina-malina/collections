@@ -4,14 +4,13 @@ import { switchMap } from 'rxjs/operators';
 import { AuthService } from '../auth/services/auth.service';
 import { ICollection } from './models/collection.model';
 import { CollectionsManagementService } from './services/collections-management.service';
-import { Route } from '@angular/compiler/src/core';
 
 @Component({
-  selector: 'app-collections',
-  templateUrl: './collections.component.html',
-  styleUrls: ['./collections.component.scss']
+  selector: 'app-user-page',
+  templateUrl: './user-page.component.html',
+  styleUrls: ['./user-page.component.scss']
 })
-export class CollectionsComponent implements OnInit {
+export class UserPageComponent implements OnInit {
 
   public collections: ICollection[] = [];
 
@@ -22,7 +21,11 @@ export class CollectionsComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.collManagement.getCollections().subscribe(coll => this.collections = coll);
+    if (this.route.snapshot.paramMap.get('userId')) {
+      this.collManagement.getUserCollections(this.route.snapshot.paramMap.get('userId')).subscribe(coll => this.collections = coll);
+    } else {
+      this.collManagement.getUserCollections(this.auth.getUserDetails()._id).subscribe(coll => this.collections = coll);
+    }
   }
   public deleteCollection(id) {
     this.collManagement.deleteCollection(id).subscribe(() =>

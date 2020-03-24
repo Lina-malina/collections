@@ -4,4 +4,5 @@ export interface IUserDetails {
   name: string;
   exp: number;
   iat: number;
+  isAdmin: boolean;
 }

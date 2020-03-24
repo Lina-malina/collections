@@ -1,19 +1,13 @@
-.logo-container {
+.collections-container {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
-table {
-  width: 100%;
+mat-card {
+  width: 300px;
+  max-width: 300px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  padding-right: 30px;
 }
-th.mat-header-cell {
-  font-size: 1rem;
-  text-align: center;
-}
-tr {
-  text-align: center;
-}
-td a {
-  color: white;
-  font-size: 14px;
-}
-

@@ -11,6 +11,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth-interceptor';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import  {MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -25,6 +28,9 @@ import { MatTableModule } from '@angular/material/table';
     MatCardModule,
     MatRadioModule,
     MatTableModule,
+    MatToolbarModule,
+    MatCheckboxModule,
+    MatMenuModule,
     HttpClientModule
   ],
   exports: [
@@ -36,6 +42,9 @@ import { MatTableModule } from '@angular/material/table';
     MatCardModule,
     MatRadioModule,
     MatTableModule,
+    MatToolbarModule,
+    MatCheckboxModule,
+    MatMenuModule,
     HttpClientModule
   ],
   providers: [

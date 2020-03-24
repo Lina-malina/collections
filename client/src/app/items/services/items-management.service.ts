@@ -13,13 +13,16 @@ export class ItemsManagementService {
   public getItems(collectionId: string): Observable<any> {
     return this.http.get('/api/items', { params: { collectionId }});
   }
+  public getItemById(itemId: string): Observable<any> {
+    return this.http.get('/api/items/' + itemId);
+  }
   public addItem(item: IItem): Observable<any> {
     return this.http.post('/api/items', item);
   }
   public deleteItem(id: string): Observable<any> {
-    return this.http.delete('/api/items' + id);
+    return this.http.delete('/api/items/' + id);
   }
   public editItem(id: string, item: IItem): Observable<any> {
-    return this.http.post('/api/items' + id, item);
+    return this.http.post('/api/items/' + id, item);
   }
 }

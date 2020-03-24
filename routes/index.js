@@ -11,16 +11,23 @@ const ctrlItems = require('../controllers/items');
 const ctrlCollections = require('../controllers/collections')
 
 router.get('/users', auth, ctrlUsers.getUsers);
+router.post('/users/disable', auth, ctrlUsers.disableUsers);
+router.post('/users/enable', auth, ctrlUsers.enableUsers);
+router.post('/users/delete', auth, ctrlUsers.deleteUsers);
+router.post('/users/new-admin', auth, ctrlUsers.makeAdmin);
+router.post('/users/not-admin', auth, ctrlUsers.disableAdmin);
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
 
-router.get('/collections', auth, ctrlCollections.getCollections);
+router.get('/collections', ctrlCollections.getCollections);
+router.get('/collections/user/:userId', auth, ctrlCollections.getUserCollections);
 router.get('/collections/:id', auth, ctrlCollections.getCollectionById);
 router.post('/collections', auth, ctrlCollections.addCollection);
 router.post('/collections/:id', auth, ctrlCollections.editCollection);
 router.delete('/collections/:id', auth, ctrlCollections.deleteCollection);
 
-router.get('/items', auth, ctrlItems.getItems);
+router.get('/items', ctrlItems.getItems);
+router.get('/items/:id', auth, ctrlItems.getItemById)
 router.post('/items', auth, ctrlItems.addItem);
 router.post('/items/:id', auth, ctrlItems.editItem);
 router.delete('/items/:id', auth, ctrlItems.deleteItem);

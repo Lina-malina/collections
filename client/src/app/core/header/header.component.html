@@ -1,0 +1,27 @@
+<nav>
+  <div class="logo-container">
+    <a routerLink="/main">Logo</a>
+  </div>
+  <div class="search-container">
+    <input matInput type="search">
+    <button mat-button color="primary">Search</button>
+  </div>
+  <div class="login-container" *ngIf="!auth.isLoggedIn()">
+    <button mat-stroked-button color="primary" routerLink="/login">Login</button>
+    <button mat-stroked-button color="primary" routerLink="/register">Register</button>
+  </div>
+  <div class="user-container" *ngIf="auth.isLoggedIn() && !auth.getUserDetails().isAdmin">
+    <button mat-button color="primary" [matMenuTriggerFor]="menu">{{auth.getUserDetails()?.name | titlecase}}</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink='/user-page'>Page</button>
+      <button mat-menu-item (click)="auth.logout()">Logout</button>
+    </mat-menu>
+  </div>
+  <div class="user-container" *ngIf="auth.isLoggedIn() && auth.getUserDetails().isAdmin">
+    <button mat-button color="primary" [matMenuTriggerFor]="menu">{{auth.getUserDetails()?.name | titlecase}}</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink='/admin'>Admin</button>
+      <button mat-menu-item (click)="auth.logout()">Logout</button>
+    </mat-menu>
+  </div>
+</nav>

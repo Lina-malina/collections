@@ -1,0 +1,28 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+table {
+  width: 100%;
+}
+th.mat-header-cell {
+  font-size: 1rem;
+  text-align: center;
+}
+tr {
+  text-align: center;
+}
+.mat-column-select {
+  overflow: initial;
+}
+mat-toolbar button {
+  margin-right: 15px;
+}
+a {
+  color: white;
+}

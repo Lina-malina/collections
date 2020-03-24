@@ -15,6 +15,7 @@ export class CreateCollectionComponent implements OnInit {
     name: '',
     description: '',
     authorId: this.auth.getUserDetails()._id,
+    authorName: this.auth.getUserDetails().name,
     _id: ''
   };
   public isCreationMode = true;
@@ -36,12 +37,12 @@ export class CreateCollectionComponent implements OnInit {
 
   public addCollection() {
     this.collManagement.addCollection(this.newCollection).subscribe(() => {
-      this.router.navigateByUrl('/collections');
+      this.router.navigateByUrl('/user-page');
     });
   }
   public editCollection() {
     this.collManagement.editCollection(this.newCollection._id, this.newCollection).subscribe(() => {
-      this.router.navigateByUrl('/collections');
+      this.router.navigateByUrl('/user-page');
     });
   }
 }

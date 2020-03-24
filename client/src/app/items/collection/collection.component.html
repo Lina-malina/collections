@@ -1,13 +1,15 @@
 <nav>
   Collection name
-  <button mat-icon-button class="add-btn"><i class="material-icons">add_box</i></button>
+  <button mat-icon-button class="add-btn" [routerLink]="['/collections/' + collectionId + '/items/new']">
+    <i class="material-icons">add_box</i>
+  </button>
 </nav>
 <div class="collection-container">
   <mat-card *ngFor="let item of items">
-    <button mat-icon-button class="edit-btn">
+    <button mat-icon-button class="edit-btn" *ngIf="hasAccess()" [routerLink]="['/collections/' + collectionId + '/items/' + item._id]">
       <i class="material-icons edit">edit</i>
     </button>
-    <button mat-icon-button class="delete-btn">
+    <button mat-icon-button class="delete-btn" *ngIf="hasAccess()" (click)="deleteItem(item._id)">
       <i class="material-icons delete">delete</i>
     </button>
     <mat-card-title>{{item.name}}</mat-card-title>
@@ -17,7 +19,7 @@
       <p>Medicine form: {{item.form}}</p>
       <p>Medicine class: {{item.description}}</p>
     </mat-card-content>
-    <mat-card-footer>By: {{item.authorId}}</mat-card-footer>
+    <mat-card-footer>By: {{item.authorName}}</mat-card-footer>
   </mat-card>
 </div>
 

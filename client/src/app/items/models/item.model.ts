@@ -4,4 +4,7 @@ export interface IItem {
   form: string;
   description: string;
   authorId: string;
+  authorName: string;
+  collectionId: string;
+  _id: string;
 }

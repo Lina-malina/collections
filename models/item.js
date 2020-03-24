@@ -9,6 +9,7 @@ const itemSchema = new mongoose.Schema({
     form: String,
     description: String,
     authorId: String,
+    authorName: String,
     collectionId: String
 });
 

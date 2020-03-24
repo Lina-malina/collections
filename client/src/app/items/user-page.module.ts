@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CollectionsRoutingModule } from './collections-routing.module';
+import { UserPageRoutingModule } from './user-page-routing.module';
 import { CollectionComponent } from './collection/collection.component';
 import { SharedModule } from '../shared/shared.module';
 import { CreateItemComponent } from './create-item/create-item.component';
-import { CollectionsComponent } from './collections.component';
+import { UserPageComponent } from './user-page.component';
 import { CreateCollectionComponent } from './create-collection/create-collection.component';
 
 
 @NgModule({
   declarations: [
-    CollectionsComponent,
+    UserPageComponent,
     CollectionComponent,
     CreateItemComponent,
     CreateCollectionComponent
   ],
   imports: [
     CommonModule,
-    CollectionsRoutingModule,
+    UserPageRoutingModule,
     SharedModule
   ]
 })
-export class CollectionsModule { }
+export class UserPageModule { }

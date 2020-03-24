@@ -13,6 +13,9 @@ export class CollectionsManagementService {
   public getCollections(): Observable<any> {
     return this.http.get('/api/collections');
   }
+  public getUserCollections(userId: string): Observable<any> {
+    return this.http.get('/api/collections/user/' + userId);
+  }
   public getCollectionById(collectionId: string): Observable<any> {
     return this.http.get('/api/collections/' + collectionId);
   }

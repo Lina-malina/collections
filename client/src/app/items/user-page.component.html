@@ -1,4 +1,4 @@
-<h2>{{auth.getUserDetails()?.name | titlecase}} Collections</h2>
+<h2>{{auth.getUserDetails()?.name | titlecase}} page</h2>
 <button mat-raised-button color="primary" routerLink="/collections/new">Add</button>
 <div class="collections-container">
   <mat-card *ngFor="let collection of collections">
