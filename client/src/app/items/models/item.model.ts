@@ -7,4 +7,5 @@ export interface IItem {
   authorName: string;
   collectionId: string;
   _id: string;
+  comments: [string];
 }

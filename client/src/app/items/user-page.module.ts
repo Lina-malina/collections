@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CreateItemComponent } from './create-item/create-item.component';
 import { UserPageComponent } from './user-page.component';
 import { CreateCollectionComponent } from './create-collection/create-collection.component';
+import { ItemWithCommentsComponent } from './item-with-comments/item-with-comments.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { CreateCollectionComponent } from './create-collection/create-collection
     UserPageComponent,
     CollectionComponent,
     CreateItemComponent,
-    CreateCollectionComponent
+    CreateCollectionComponent,
+    ItemWithCommentsComponent
   ],
   imports: [
     CommonModule,

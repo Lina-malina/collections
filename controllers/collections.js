@@ -20,7 +20,7 @@ module.exports.addCollection = function(req, res) {
     const collection = new Collection({
         name: req.body.name,
         description: req.body.description,
-        authorId: req.payload._id,
+        authorId: req.body.authorId,
         authorName: req.payload.name
     });
     collection.save(function() {

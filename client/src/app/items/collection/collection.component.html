@@ -1,6 +1,6 @@
 <nav>
   Collection name
-  <button mat-icon-button class="add-btn" [routerLink]="['/collections/' + collectionId + '/items/new']">
+  <button mat-icon-button class="add-btn" *ngIf="hasAccess()" [routerLink]="['/collections/' + collectionId + '/items/new']">
     <i class="material-icons">add_box</i>
   </button>
 </nav>
@@ -11,6 +11,9 @@
     </button>
     <button mat-icon-button class="delete-btn" *ngIf="hasAccess()" (click)="deleteItem(item._id)">
       <i class="material-icons delete">delete</i>
+    </button>
+    <button mat-icon-button class="comments-btn" *ngIf="auth.isLoggedIn()" [routerLink]="['/collections/' + collectionId + '/items/' + item._id + '/comments']">
+      <i class="material-icons question_answer">question_answer</i>
     </button>
     <mat-card-title>{{item.name}}</mat-card-title>
     <mat-card-subtitle *ngIf="item.isGeneric">Generic</mat-card-subtitle>

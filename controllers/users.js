@@ -6,6 +6,11 @@ module.exports.getUsers = function(req, res) {
     res.status(200).json(users);
   })
 }
+module.exports.getUserById = function(req, res) {
+  User.findOne({_id: req.params.userId}, function(err, user) {
+    res.status(200).json(user);
+  })
+}
 module.exports.disableUsers = function(req, res) {
   req.body.selectedId.forEach(id => {
       User.findOne({_id: id}, function(err, disabledUser) {

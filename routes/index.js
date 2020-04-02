@@ -11,6 +11,7 @@ const ctrlItems = require('../controllers/items');
 const ctrlCollections = require('../controllers/collections')
 
 router.get('/users', auth, ctrlUsers.getUsers);
+router.get('/users/:userId', auth, ctrlUsers.getUserById)
 router.post('/users/disable', auth, ctrlUsers.disableUsers);
 router.post('/users/enable', auth, ctrlUsers.enableUsers);
 router.post('/users/delete', auth, ctrlUsers.deleteUsers);
@@ -31,5 +32,6 @@ router.get('/items/:id', auth, ctrlItems.getItemById)
 router.post('/items', auth, ctrlItems.addItem);
 router.post('/items/:id', auth, ctrlItems.editItem);
 router.delete('/items/:id', auth, ctrlItems.deleteItem);
+router.post('/items/:id/comments', auth, ctrlItems.addComment);
 
 module.exports = router;

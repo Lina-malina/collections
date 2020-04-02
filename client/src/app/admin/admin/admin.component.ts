@@ -3,6 +3,7 @@ import { AuthService } from '../../auth/services/auth.service';
 import { IUser } from '../../auth/models/user.model';
 import { SelectionModel } from '@angular/cdk/collections';
 import { UsersManagementService } from '../../auth/services/users-management.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -14,7 +15,10 @@ export class AdminComponent implements OnInit {
   public columnsToDisplay: string[] = ['select', 'name', 'email', 'page', 'isActive', 'isAdmin'];
   public selection: SelectionModel<IUser>;
 
-  constructor(public auth: AuthService, public usersManagement: UsersManagementService) { }
+  constructor(
+    public auth: AuthService,
+    public usersManagement: UsersManagementService,
+    private router: Router) { }
 
   public isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -55,7 +59,10 @@ export class AdminComponent implements OnInit {
   }
   public disableAdmin() {
     const selectedUsersId = this.selection.selected.map(user => user._id);
-    this.usersManagement.postSelectedId(selectedUsersId, 'not-admin').subscribe(() => this.reloadGrid());
+    const currentUserId = selectedUsersId.find(id => id === this.auth.getUserDetails()._id);
+    this.usersManagement.postSelectedId(selectedUsersId, 'not-admin').subscribe(() => {
+      currentUserId ? this.auth.logout() :  this.reloadGrid();
+    });
   }
   public ngOnInit() {
     this.usersManagement.users().subscribe(users => this.users = users);

@@ -1,0 +1,29 @@
+<div class="item-container">
+  <mat-card *ngIf="item">
+    <mat-card-title>{{item.name}}</mat-card-title>
+    <mat-card-subtitle *ngIf="item.isGeneric">Generic</mat-card-subtitle>
+    <mat-card-subtitle *ngIf="!item.isGeneric">Brand name</mat-card-subtitle>
+    <mat-card-content>
+      <p>Medicine form: {{item.form}}</p>
+      <p>Medicine class: {{item.description}}</p>
+    </mat-card-content>
+    <mat-card-footer>By: {{item.authorName}}</mat-card-footer>
+  </mat-card>
+</div>
+<div class="comment-textarea">
+  <mat-form-field appearance="fill">
+    <mat-label>Leave a comment</mat-label>
+    <textarea matInput [(ngModel)]="comment"></textarea>
+    <button mat-raised-button color="primary" class="send-btn" (click)="addComment()">
+      Send
+    </button>
+  </mat-form-field>
+</div>
+<div class="comments-container" *ngIf="item">
+  <div class="comment" *ngFor="let comment of item.comments">
+    <p class="text">{{comment.comment}}</p>
+    <p class="author">By: {{comment.author}}</p>
+  </div>
+</div>
+
+

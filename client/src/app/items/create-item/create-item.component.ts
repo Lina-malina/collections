@@ -20,7 +20,8 @@ export class CreateItemComponent implements OnInit {
     authorId: this.auth.getUserDetails()._id,
     authorName: this.auth.getUserDetails().name,
     collectionId: this.collectionId,
-    _id: ''
+    _id: '',
+    comments: null
   };
   public isCreationMode = true;
 

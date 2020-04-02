@@ -10,7 +10,8 @@ const itemSchema = new mongoose.Schema({
     description: String,
     authorId: String,
     authorName: String,
-    collectionId: String
-});
+    collectionId: String,
+    comments: [{ comment: String, author: String }]
+}, { usePushEach: true }); // UsePushEach is workaround to support array fields in mongoose
 
 mongoose.model('Item', itemSchema);

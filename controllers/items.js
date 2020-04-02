@@ -19,7 +19,8 @@ module.exports.addItem = function(req, res) {
         description: req.body.description,
         collectionId: req.body.collectionId,
         authorId: req.payload._id,
-        authorName: req.payload.name
+        authorName: req.payload.name,
+        comments: []
     });
     item.save(function() {
         res.status(200).json();
@@ -41,5 +42,14 @@ module.exports.editItem = function(req, res) {
 module.exports.deleteItem = function(req, res) {
     Item.deleteOne({_id: req.params.id}, function() {
         res.status(200).json();
+    });
+};
+module.exports.addComment = function(req, res) {
+    Item.findOne({_id: req.params.id}, function(err, item) {
+        item.comments.push({ comment: req.body.comment, author: req.body.name });
+        
+        item.save(function() {
+            res.status(200).json();
+        });
     });
 };

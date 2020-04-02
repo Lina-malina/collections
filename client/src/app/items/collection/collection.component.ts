@@ -20,7 +20,7 @@ export class CollectionComponent implements OnInit {
     private itemsManagement: ItemsManagementService,
     private collManagement: CollectionsManagementService,
     private route: ActivatedRoute,
-    private auth: AuthService
+    public auth: AuthService
     ) { }
 
   ngOnInit() {

@@ -25,4 +25,7 @@ export class ItemsManagementService {
   public editItem(id: string, item: IItem): Observable<any> {
     return this.http.post('/api/items/' + id, item);
   }
+  public addComment(id: string, comment: string, name: string) {
+    return this.http.post('/api/items/' + id + '/comments', { comment, name});
+  }
 }

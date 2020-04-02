@@ -12,6 +12,9 @@ export class UsersManagementService {
   public users(): Observable<any> {
     return this.http.get('/api/users');
   }
+  public getUserById(userId: string): Observable<any> {
+    return this.http.get('api/users/' + userId);
+  }
   public postSelectedId(selectedId, action): Observable<any> {
     return this.http.post(`/api/users/${action}`, {selectedId});
   }
