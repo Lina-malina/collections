@@ -6,6 +6,11 @@
 mat-card {
   width: 300px;
   max-width: 300px;
+  color: black;
+
+  mat-card-subtitle {
+    color: black;
+  }
 }
 .comment-textarea {
   display: flex;
@@ -42,3 +47,5 @@ mat-form-field {
     font-size: 14px;
   }
 }
+
+

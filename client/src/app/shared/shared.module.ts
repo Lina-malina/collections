@@ -13,7 +13,11 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import  {MatMenuModule } from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
@@ -31,6 +35,10 @@ import  {MatMenuModule } from '@angular/material/menu';
     MatToolbarModule,
     MatCheckboxModule,
     MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatDividerModule,
     HttpClientModule
   ],
   exports: [
@@ -45,6 +53,10 @@ import  {MatMenuModule } from '@angular/material/menu';
     MatToolbarModule,
     MatCheckboxModule,
     MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatDividerModule,
     HttpClientModule
   ],
   providers: [

@@ -1,28 +1,38 @@
-<nav>
-  Collection name
+<nav *ngIf="patient">
+  <h3 *ngIf="patient.isMale">Mr. {{patient.fullName}} prescriptions</h3>
+  <h3 *ngIf="!patient.isMale">Mrs. {{patient.fullName}} prescriptions</h3>
   <button mat-icon-button class="add-btn" *ngIf="hasAccess()" [routerLink]="['/collections/' + collectionId + '/items/new']">
     <i class="material-icons">add_box</i>
   </button>
 </nav>
-<div class="collection-container">
-  <mat-card *ngFor="let item of items">
+<div class="collection-container" *ngIf="patient">
+  <mat-card *ngFor="let item of items" [style.background-color]="item.isDrug ? 'pink' : item.isPsycho ? 'yellow' : 'gray'"  [routerLink]="['/items/' + item._id + '/comments']" [queryParams]="{ patientName: patient.fullName}">
+    <mat-card-title>Prescription, {{item.payment}} payment</mat-card-title>
+    <mat-card-subtitle>Doctor: {{item.authorName}}</mat-card-subtitle>
+    <mat-card-subtitle>Patient: {{patient.fullName}}</mat-card-subtitle>
+    <mat-card-content>
+      <div>
+        <span>Rp.: </span>
+        <span> {{item.form | titlecase}}</span>
+        <span> {{item.name}}</span>
+        <span> {{item.dose}}</span>
+      </div>
+      <div>
+        <span>D.t.d. N.: </span>
+        <span>{{item.amount}}</span>
+      </div>
+      <div>
+        <span>S.: </span>
+        <span>{{item.prescription}}</span>
+      </div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
     <button mat-icon-button class="edit-btn" *ngIf="hasAccess()" [routerLink]="['/collections/' + collectionId + '/items/' + item._id]">
       <i class="material-icons edit">edit</i>
     </button>
     <button mat-icon-button class="delete-btn" *ngIf="hasAccess()" (click)="deleteItem(item._id)">
       <i class="material-icons delete">delete</i>
     </button>
-    <button mat-icon-button class="comments-btn" *ngIf="auth.isLoggedIn()" [routerLink]="['/collections/' + collectionId + '/items/' + item._id + '/comments']">
-      <i class="material-icons question_answer">question_answer</i>
-    </button>
-    <mat-card-title>{{item.name}}</mat-card-title>
-    <mat-card-subtitle *ngIf="item.isGeneric">Generic</mat-card-subtitle>
-    <mat-card-subtitle *ngIf="!item.isGeneric">Brand name</mat-card-subtitle>
-    <mat-card-content>
-      <p>Medicine form: {{item.form}}</p>
-      <p>Medicine class: {{item.description}}</p>
-    </mat-card-content>
-    <mat-card-footer>By: {{item.authorName}}</mat-card-footer>
   </mat-card>
 </div>
 

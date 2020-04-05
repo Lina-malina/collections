@@ -13,6 +13,7 @@ export class ItemWithCommentsComponent implements OnInit {
   public item: IItem;
   public itemId: string = this.route.snapshot.paramMap.get('itemId');
   public comment = '';
+  public patientName: string;
 
   constructor(
     private itemsManagement: ItemsManagementService,
@@ -21,6 +22,11 @@ export class ItemWithCommentsComponent implements OnInit {
 
   ngOnInit() {
     this.itemsManagement.getItemById(this.itemId).subscribe(item => this.item = item);
+    this.route.queryParamMap.subscribe(params => {
+      if (params.get('patientName')) {
+        this.patientName = params.get('patientName');
+      }
+    })
   }
   public addComment() {
     this.item.comments.push(this.comment);

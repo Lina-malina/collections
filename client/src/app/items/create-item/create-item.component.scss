@@ -2,15 +2,34 @@
   background-color: gray;
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 500px;
   margin: 0 auto;
+  padding: 0px 0px 15px 15px;
 }
-.mat-card-actions .mat-raised-button:first-child {
-  margin-left: 20px;
+.row {
+  height: 50px;
+  display: flex;
+  align-items: center;
 }
-.mat-radio-button ~ .mat-radio-button {
-  margin-left: 15px;
+mat-checkbox {
+  margin-right: 30px;
 }
-mat-radio-group {
-  margin: 0px 0px 20px 10px;
+h4 {
+  text-align: center;
+  margin-bottom: 0px;
+}
+mat-label {
+  font-size: 14px;
+}
+.form,
+.dose {
+  width: 130px;
+}
+.payment,
+.amount,
+.prescription {
+  width: 200px;
+}
+input {
+  cursor: pointer;
 }

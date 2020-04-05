@@ -1,0 +1,12 @@
+<div class="items-container">
+  <mat-card *ngFor="let item of items" [routerLink]="['/items/' + item._id + '/comments']">
+    <mat-card-title>{{item.name}}</mat-card-title>
+    <mat-card-subtitle *ngIf="item.isGeneric">Generic</mat-card-subtitle>
+    <mat-card-subtitle *ngIf="!item.isGeneric">Brand name</mat-card-subtitle>
+    <mat-card-content>
+      <p>Medicine form: {{item.form}}</p>
+      <p>Medicine class: {{item.description}}</p>
+    </mat-card-content>
+    <mat-card-footer>By: {{item.authorName}}</mat-card-footer>
+  </mat-card>
+</div>

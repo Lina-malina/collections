@@ -3,8 +3,8 @@
     <a routerLink="/main">Logo</a>
   </div>
   <div class="search-container">
-    <input matInput type="search">
-    <button mat-button color="primary">Search</button>
+    <input matInput type="search" [(ngModel)]="searchValue">
+    <button mat-button color="primary" (click)="search()">Search</button>
   </div>
   <div class="login-container" *ngIf="!auth.isLoggedIn()">
     <button mat-stroked-button color="primary" routerLink="/login">Login</button>

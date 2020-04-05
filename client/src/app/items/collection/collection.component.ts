@@ -14,7 +14,7 @@ import { ICollection } from '../models/collection.model';
 export class CollectionComponent implements OnInit {
   public items: IItem[] = [];
   public collectionId: string = this.route.snapshot.paramMap.get('id');
-  public collectionAuthorId: string;
+  public patient: ICollection;
 
   constructor(
     private itemsManagement: ItemsManagementService,
@@ -26,11 +26,11 @@ export class CollectionComponent implements OnInit {
   ngOnInit() {
     this.itemsManagement.getItems(this.collectionId).subscribe(items => this.items = items);
     if (this.auth.isLoggedIn()) {
-      this.collManagement.getCollectionById(this.collectionId).subscribe(coll => this.collectionAuthorId = coll.authorId);
+      this.collManagement.getCollectionById(this.collectionId).subscribe(coll => this.patient = coll);
     }
   }
   public hasAccess(): boolean {
-    return this.auth.isLoggedIn() && (this.auth.getUserDetails().isAdmin || this.auth.getUserDetails()._id === this.collectionAuthorId);
+    return this.auth.isLoggedIn() && (this.auth.getUserDetails().isAdmin || this.auth.getUserDetails()._id === this.patient.authorId);
   }
   public deleteItem(id) {
     this.itemsManagement.deleteItem(id).subscribe(() =>

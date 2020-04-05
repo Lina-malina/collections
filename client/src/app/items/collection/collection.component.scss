@@ -1,26 +1,24 @@
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
 .collection-container {
   display: flex;
-  justify-content: space-around;
 }
 mat-card {
   width: 300px;
   max-width: 300px;
   margin-right: 20px;
-  position: relative;
-  padding-right: 30px;
+  color: black;
+  cursor: pointer;
 }
-.edit-btn {
-  position: absolute;
-  top: 0px;
-  right: 0px;
+mat-card-subtitle {
+  color: black;
 }
-.delete-btn {
-  position: absolute;
-  right: 0px;
-  top: 30px;
+mat-divider {
+  border-top-color: black;
 }
-.comments-btn {
-  position: absolute;
-  right: 0px;
-  top: 60px;
-}
+

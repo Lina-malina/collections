@@ -1,11 +1,15 @@
 export interface IItem {
-  name: string;
-  isGeneric: boolean;
+  _id: string;
+  payment: string;
+  isDrug: boolean;
+  isPsycho: boolean;
   form: string;
-  description: string;
+  name: string;
+  dose: string;
+  amount: string;
+  prescription: string;
   authorId: string;
   authorName: string;
   collectionId: string;
-  _id: string;
   comments: [string];
 }

@@ -1,22 +1,56 @@
 <div class="item-form-container">
-  <mat-form-field appearance="fill">
-    <mat-label>Medicine name</mat-label>
-    <input matInput [(ngModel)]="newItem.name">
+  <h4>Prescription</h4>
+  <mat-form-field appearance="standard" class="payment">
+    <mat-label>Payment</mat-label>
+    <mat-select matInput [(ngModel)]="newItem.payment">
+      <mat-option *ngFor="let payment of payments" [value]="payment.value">
+        {{payment.value}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
-  <mat-radio-group aria-label="Select an option" [(ngModel)]="newItem.isGeneric">
-    <mat-radio-button value="true">Generic</mat-radio-button>
-    <mat-radio-button value="false">Brand name</mat-radio-button>
-  </mat-radio-group>
-  <mat-form-field appearance="fill">
-    <mat-label>Medicine form</mat-label>
-    <input matInput [(ngModel)]="newItem.form">
+  <div class="row">
+    <mat-checkbox matInput [(ngModel)]="newItem.isDrug">Drug</mat-checkbox>
+    <mat-checkbox matInput [(ngModel)]="newItem.isPsycho">Psycho</mat-checkbox>
+  </div>
+  <table cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field appearance="standard" class="form">
+          <span matPrefix>Rp.: &nbsp;</span>
+          <mat-label>Form</mat-label>
+          <mat-select matInput [(ngModel)]="newItem.form">
+            <mat-option *ngFor="let form of medicineForms" [value]="form.value">
+              {{form.value | titlecase}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="standard">
+          <mat-label>Name</mat-label>
+          <input matInput [(ngModel)]="newItem.name">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="standard" class="dose">
+          <mat-label>Dose</mat-label>
+          <input matInput [(ngModel)]="newItem.dose">
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <mat-form-field appearance="standard" class="amount">
+    <span matPrefix>D.t.d. N.: &nbsp;</span>
+    <mat-label>Amount</mat-label>
+    <input matInput [(ngModel)]="newItem.amount">
   </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Medicine class</mat-label>
-    <input matInput [(ngModel)]="newItem.description">
+  <mat-form-field appearance="standard" class="prescription">
+    <span matPrefix>S.: &nbsp;</span>
+    <mat-label>Prescription</mat-label>
+    <input matInput [(ngModel)]="newItem.prescription">
   </mat-form-field>
   <mat-card-actions>
-    <button mat-raised-button color="primary" *ngIf="isCreationMode" (click)="addItem()">Create item</button>
-    <button mat-raised-button color="primary" *ngIf="!isCreationMode" (click)="editItem()">Edit item</button>
+    <button mat-raised-button color="primary" *ngIf="isCreationMode" (click)="addItem()">Create prescription</button>
+    <button mat-raised-button color="primary" *ngIf="!isCreationMode" (click)="editItem()">Edit prescription</button>
   </mat-card-actions>
 </div>

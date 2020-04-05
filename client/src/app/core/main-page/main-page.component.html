@@ -1,10 +1,10 @@
 <div class="collections-container">
   <mat-card *ngFor="let collection of collections">
-    <mat-card-title>{{collection.name}}</mat-card-title>
+    <mat-card-title>{{collection.fullName}}</mat-card-title>
     <mat-card-content>
-      <p>{{collection.description}}</p>
+      <p>{{collection.dateOfBirth | date}}</p>
     </mat-card-content>
-    <mat-card-footer>By: {{collection.authorName}}</mat-card-footer>
+    <mat-card-footer>Physician: {{collection.doctorInCharge}}</mat-card-footer>
     <mat-card-actions>
       <button mat-raised-button color="primary" [routerLink]="['/collections', collection._id]">Show</button>
     </mat-card-actions>

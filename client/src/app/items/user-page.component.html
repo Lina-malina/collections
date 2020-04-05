@@ -1,5 +1,9 @@
-<h2>{{userName | titlecase}} page</h2>
-<button mat-raised-button color="primary" routerLink="/collections/new" [queryParams]="{userId: userId}">Add</button>
+<div class="row">
+  <h2>Doctor {{userName | titlecase}} patients</h2>
+  <button mat-raised-button color="primary" routerLink="/collections/new" [queryParams]="{ userId: userId, userName: userName }">
+    Add patient
+  </button>
+</div>
 <div class="collections-container">
   <mat-card *ngFor="let collection of collections">
     <button mat-icon-button class="edit-btn" [routerLink]="['/collections/edit', collection._id]">
@@ -8,9 +12,12 @@
     <button mat-icon-button class="delete-btn" (click)="deleteCollection(collection._id)">
       <i class="material-icons delete">delete</i>
     </button>
-    <mat-card-title>{{collection.name}}</mat-card-title>
+    <mat-card-title>{{collection.fullName}}</mat-card-title>
     <mat-card-content>
-      <p>{{collection.description}}</p>
+      <p>{{collection.dateOfBirth | date}}</p>
+      <p>Address: {{collection.address}}</p>
+      <p>Phone number: +375 {{collection.number}}</p>
+      <p>Physician: {{collection.doctorInCharge}}</p>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" [routerLink]="['/collections', collection._id]">

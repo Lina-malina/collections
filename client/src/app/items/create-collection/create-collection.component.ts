@@ -12,12 +12,15 @@ import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 })
 export class CreateCollectionComponent implements OnInit {
 
-  public newCollection: ICollection = {
-    name: '',
-    description: '',
+  public newPatient: ICollection = {
+    _id: '',
+    fullName: '',
+    isMale: true,
+    dateOfBirth: '',
+    address: '',
+    number: '',
+    doctorInCharge: null,
     authorId: null,
-    authorName: this.auth.getUserDetails().name,
-    _id: ''
   };
   public isCreationMode = true;
 
@@ -29,22 +32,24 @@ export class CreateCollectionComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.newCollection.authorId = this.auth.getUserDetails()._id;
+    this.newPatient.authorId = this.auth.getUserDetails()._id;
+    this.newPatient.doctorInCharge = this.auth.getUserDetails().name;
     this.route.queryParamMap.subscribe(params => {
       if (params.get('userId')) {
-        this.newCollection.authorId = params.get('userId');
+        this.newPatient.authorId = params.get('userId');
+        this.newPatient.doctorInCharge = params.get('userName');
       }
     });
 
     if (this.route.snapshot.paramMap.get('id')) {
       this.isCreationMode = false;
       this.collManagement.getCollectionById(this.route.snapshot.paramMap.get('id')).subscribe(currentCollection =>
-        this.newCollection = currentCollection);
+        this.newPatient = currentCollection);
     }
   }
 
   public addCollection() {
-    this.collManagement.addCollection(this.newCollection).subscribe(() => {
+    this.collManagement.addCollection(this.newPatient).subscribe(() => {
       this.router.navigateByUrl('/user-page');
       this.route.queryParamMap.subscribe(params => {
         if (params.get('userId')) {
@@ -54,7 +59,7 @@ export class CreateCollectionComponent implements OnInit {
     });
   }
   public editCollection() {
-    this.collManagement.editCollection(this.newCollection._id, this.newCollection).subscribe(() => {
+    this.collManagement.editCollection(this.newPatient._id, this.newPatient).subscribe(() => {
       this.router.navigateByUrl('/user-page');
     });
   }

@@ -11,3 +11,15 @@ mat-card-actions {
 .mat-card-actions .mat-raised-button:first-child {
   margin-bottom: 10px;
 }
+p {
+  text-align: center;
+}
+.mat-card-actions .mat-raised-button:first-child {
+  margin-left: 20px;
+}
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 15px;
+}
+mat-radio-group {
+  margin: 0px 0px 20px 10px;
+}

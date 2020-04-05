@@ -6,6 +6,11 @@ module.exports.getItems = function(req, res) {
         res.status(200).json(items);
     })
 };
+module.exports.getAllItems = function(req, res) {
+    Item.find(function(err, items) {
+        res.status(200).json(items);
+    })
+};
 module.exports.getItemById = function(req, res) {
     Item.findOne({ _id: req.params.id }, function(err, items) {
         res.status(200).json(items);
@@ -13,13 +18,17 @@ module.exports.getItemById = function(req, res) {
 };
 module.exports.addItem = function(req, res) {
     const item = new Item({
-        name: req.body.name,
-        isGeneric: req.body.isGeneric,
+        payment: req.body.payment,
+        isDrug: req.body.isDrug,
+        isPsycho: req.body.isPsycho,
         form: req.body.form,
-        description: req.body.description,
+        name: req.body.name,
+        dose: req.body.dose,
+        amount: req.body.amount,
+        prescription: req.body.prescription,
         collectionId: req.body.collectionId,
-        authorId: req.payload._id,
-        authorName: req.payload.name,
+        authorId: req.body.authorId,
+        authorName: req.body.authorName,
         comments: []
     });
     item.save(function() {
@@ -28,11 +37,14 @@ module.exports.addItem = function(req, res) {
 };
 module.exports.editItem = function(req, res) {
     Item.findOne({_id: req.params.id}, function(err, item) {
-        item.name = req.body.name,
-        item.isGeneric = req.body.isGeneric,
+        item.payment = req.body.payment,
+        item.isDrug = req.body.isDrug,
+        item.isPsycho = req.body.isPsycho,
         item.form = req.body.form,
-        item.description = req.body.description,
-        item.authorId = req.payload._id
+        item.name = req.body.name,
+        item.dose = req.body.dose,
+        item.amount = req.body.amount,
+        item.prescription = req.body.prescription,
   
         item.save(function() {
             res.status(200).json();

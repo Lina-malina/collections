@@ -28,6 +28,7 @@ router.post('/collections/:id', auth, ctrlCollections.editCollection);
 router.delete('/collections/:id', auth, ctrlCollections.deleteCollection);
 
 router.get('/items', ctrlItems.getItems);
+router.get('/search-items', ctrlItems.getAllItems);
 router.get('/items/:id', auth, ctrlItems.getItemById)
 router.post('/items', auth, ctrlItems.addItem);
 router.post('/items/:id', auth, ctrlItems.editItem);

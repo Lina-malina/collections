@@ -1,7 +1,10 @@
 export interface ICollection {
-  name: string;
-  description: string;
-  authorId: string;
-  authorName: string;
   _id: string;
+  fullName: string;
+  isMale: boolean;
+  dateOfBirth: string;
+  address: string;
+  number: string;
+  doctorInCharge: string;
+  authorId: string;
 }
