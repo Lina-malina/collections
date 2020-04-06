@@ -45,6 +45,7 @@ export class CreateItemComponent implements OnInit {
     authorId: this.auth.getUserDetails()._id,
     authorName: this.auth.getUserDetails().name,
     collectionId: this.collectionId,
+    collectionName: null,
     comments: null
   };
   public isCreationMode = true;
@@ -61,6 +62,7 @@ export class CreateItemComponent implements OnInit {
       this.isCreationMode = false;
       this.itemsManagement.getItemById(this.currentItemId).subscribe(currentItem => this.newItem = currentItem);
     }
+    this.route.queryParamMap.subscribe(params => this.newItem.collectionName = params.get('patientName'));
   }
 
   public addItem() {

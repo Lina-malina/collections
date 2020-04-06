@@ -1,12 +1,12 @@
 <nav *ngIf="patient">
   <h3 *ngIf="patient.isMale">Mr. {{patient.fullName}} prescriptions</h3>
   <h3 *ngIf="!patient.isMale">Mrs. {{patient.fullName}} prescriptions</h3>
-  <button mat-icon-button class="add-btn" *ngIf="hasAccess()" [routerLink]="['/collections/' + collectionId + '/items/new']">
+  <button mat-icon-button class="add-btn" *ngIf="hasAccess()" [routerLink]="['/collections/' + collectionId + '/items/new']" [queryParams]="{patientName: patient.fullName}">
     <i class="material-icons">add_box</i>
   </button>
 </nav>
 <div class="collection-container" *ngIf="patient">
-  <mat-card *ngFor="let item of items" [style.background-color]="item.isDrug ? 'pink' : item.isPsycho ? 'yellow' : 'gray'"  [routerLink]="['/items/' + item._id + '/comments']" [queryParams]="{ patientName: patient.fullName}">
+  <mat-card *ngFor="let item of items" [style.background-color]="item.isDrug ? 'pink' : item.isPsycho ? 'yellow' : 'gray'"  [routerLink]="['/items/' + item._id + '/comments']">
     <mat-card-title>Prescription, {{item.payment}} payment</mat-card-title>
     <mat-card-subtitle>Doctor: {{item.authorName}}</mat-card-subtitle>
     <mat-card-subtitle>Patient: {{patient.fullName}}</mat-card-subtitle>
@@ -30,7 +30,7 @@
     <button mat-icon-button class="edit-btn" *ngIf="hasAccess()" [routerLink]="['/collections/' + collectionId + '/items/' + item._id]">
       <i class="material-icons edit">edit</i>
     </button>
-    <button mat-icon-button class="delete-btn" *ngIf="hasAccess()" (click)="deleteItem(item._id)">
+    <button mat-icon-button class="delete-btn" *ngIf="hasAccess()" (click)="deleteItem(item._id, $event)">
       <i class="material-icons delete">delete</i>
     </button>
   </mat-card>

@@ -32,7 +32,8 @@ export class CollectionComponent implements OnInit {
   public hasAccess(): boolean {
     return this.auth.isLoggedIn() && (this.auth.getUserDetails().isAdmin || this.auth.getUserDetails()._id === this.patient.authorId);
   }
-  public deleteItem(id) {
+  public deleteItem(id, event) {
+    event.stopPropagation();
     this.itemsManagement.deleteItem(id).subscribe(() =>
       this.itemsManagement.getItems(this.collectionId).subscribe(items => this.items = items));
   }

@@ -21,10 +21,7 @@ const itemSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    dose: {
-        type: String,
-        required: true
-    },
+    dose: String,
     amount: {
         type: String,
         required: true
@@ -36,6 +33,7 @@ const itemSchema = new mongoose.Schema({
     authorId: String,
     authorName: String,
     collectionId: String,
+    collectionName: String,
     comments: [{ comment: String, author: String }]
 }, { usePushEach: true }); // UsePushEach is workaround to support array fields in mongoose
 

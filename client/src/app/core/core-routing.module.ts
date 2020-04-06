@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'main', component: MainPageComponent },
   { path: 'user-page', component: UserPageComponent, canActivate: [AuthGuard] },
   { path: 'user-page/:userId', component: UserPageComponent, canActivate: [AuthGuard] },
-  { path: 'search', component: SearchComponent }
+  { path: 'search/:value', component: SearchComponent }
 ];
 
 @NgModule({

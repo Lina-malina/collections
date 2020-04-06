@@ -1,12 +1,23 @@
 <div class="items-container">
-  <mat-card *ngFor="let item of items" [routerLink]="['/items/' + item._id + '/comments']">
-    <mat-card-title>{{item.name}}</mat-card-title>
-    <mat-card-subtitle *ngIf="item.isGeneric">Generic</mat-card-subtitle>
-    <mat-card-subtitle *ngIf="!item.isGeneric">Brand name</mat-card-subtitle>
+  <mat-card *ngFor="let item of items" [style.background-color]="item.isDrug ? 'pink' : item.isPsycho ? 'yellow' : 'gray'"  [routerLink]="['/items/' + item._id + '/comments']">
+    <mat-card-title>Prescription, {{item.payment}} payment</mat-card-title>
+    <mat-card-subtitle>Doctor: {{item.authorName}}</mat-card-subtitle>
+    <mat-card-subtitle>Patient: {{item.collectionName}}</mat-card-subtitle>
     <mat-card-content>
-      <p>Medicine form: {{item.form}}</p>
-      <p>Medicine class: {{item.description}}</p>
+      <div>
+        <span>Rp.: </span>
+        <span> {{item.form | titlecase}}</span>
+        <span> {{item.name}}</span>
+        <span> {{item.dose}}</span>
+      </div>
+      <div>
+        <span>D.t.d. N.: </span>
+        <span>{{item.amount}}</span>
+      </div>
+      <div>
+        <span>S.: </span>
+        <span>{{item.prescription}}</span>
+      </div>
     </mat-card-content>
-    <mat-card-footer>By: {{item.authorName}}</mat-card-footer>
   </mat-card>
 </div>

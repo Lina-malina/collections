@@ -6,8 +6,8 @@ module.exports.getItems = function(req, res) {
         res.status(200).json(items);
     })
 };
-module.exports.getAllItems = function(req, res) {
-    Item.find(function(err, items) {
+module.exports.searchItems = function(req, res) {
+    Item.find({ name: { $regex: req.query.value, $options: 'i' }}, function(err, items) {
         res.status(200).json(items);
     })
 };
@@ -27,6 +27,7 @@ module.exports.addItem = function(req, res) {
         amount: req.body.amount,
         prescription: req.body.prescription,
         collectionId: req.body.collectionId,
+        collectionName: req.body.collectionName,
         authorId: req.body.authorId,
         authorName: req.body.authorName,
         comments: []

@@ -11,5 +11,6 @@ export interface IItem {
   authorId: string;
   authorName: string;
   collectionId: string;
+  collectionName: string;
   comments: [string];
 }

@@ -13,8 +13,8 @@ export class ItemsManagementService {
   public getItems(collectionId: string): Observable<any> {
     return this.http.get('/api/items', { params: { collectionId }});
   }
-  public getAllItems(): Observable<any> {
-    return this.http.get('/api/search-items');
+  public searchItems(value: string): Observable<any> {
+    return this.http.get('/api/search-items', { params: { value }});
   }
   public getItemById(itemId: string): Observable<any> {
     return this.http.get('/api/items/' + itemId);
