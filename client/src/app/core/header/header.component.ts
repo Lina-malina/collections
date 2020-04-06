@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
   public search() {
     if (this.searchValue) {
       this.router.navigateByUrl('search/' + this.searchValue);
+      this.searchValue = '';
     }
   }
 }
