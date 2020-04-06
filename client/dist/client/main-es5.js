@@ -265,7 +265,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"item-container\">\n  <mat-card *ngIf=\"item\" [style.background-color]=\"item.isDrug ? 'pink' : item.isPsycho ? 'yellow' : 'gray'\">\n    <mat-card-title>Prescription, {{item.payment}} payment</mat-card-title>\n    <mat-card-subtitle>Doctor: {{item.authorName}}</mat-card-subtitle>\n    <mat-card-subtitle>Patient: {{patientName}}</mat-card-subtitle>\n    <mat-card-content>\n      <div class=\"row\">\n        <span>Rp.: </span>\n        <span> {{item.form | titlecase}}</span>\n        <span> {{item.name}}</span>\n        <span> {{item.dose}}</span>\n      </div>\n      <div>\n        <span>D.t.d. N.: </span>\n        <span>{{item.amount}}</span>\n      </div>\n      <div>\n        <span>S.: </span>\n        <span>{{item.prescription}}</span>\n      </div>\n    </mat-card-content>\n  </mat-card>\n</div>\n<div class=\"comment-textarea\">\n  <mat-form-field appearance=\"fill\">\n    <mat-label>Leave a comment</mat-label>\n    <textarea matInput [(ngModel)]=\"comment\"></textarea>\n    <button mat-raised-button color=\"primary\" class=\"send-btn\" (click)=\"addComment()\">\n      Send\n    </button>\n  </mat-form-field>\n</div>\n<div class=\"comments-container\" *ngIf=\"item\">\n  <div class=\"comment\" *ngFor=\"let comment of item.comments\">\n    <p class=\"text\">{{comment.comment}}</p>\n    <p class=\"author\">By: {{comment.author}}</p>\n  </div>\n</div>\n\n\n";
+    __webpack_exports__["default"] = "<div class=\"item-container\">\n  <mat-card *ngIf=\"item\" [style.background-color]=\"item.isDrug ? 'pink' : item.isPsycho ? 'yellow' : 'gray'\">\n    <mat-card-title>Prescription, {{item.payment}} payment</mat-card-title>\n    <mat-card-subtitle>Doctor: {{item.authorName}}</mat-card-subtitle>\n    <mat-card-subtitle>Patient: {{patientName}}</mat-card-subtitle>\n    <mat-card-content>\n      <div class=\"row\">\n        <span>Rp.: </span>\n        <span> {{item.form | titlecase}}</span>\n        <span> {{item.name}}</span>\n        <span> {{item.dose}}</span>\n      </div>\n      <div>\n        <span>D.t.d. N.: </span>\n        <span>{{item.amount}}</span>\n      </div>\n      <div>\n        <span>S.: </span>\n        <span>{{item.prescription}}</span>\n      </div>\n    </mat-card-content>\n  </mat-card>\n</div>\n<div class=\"comment-textarea\" *ngIf=\"auth.isLoggedIn()\">\n  <mat-form-field appearance=\"fill\">\n    <mat-label>Leave a comment</mat-label>\n    <textarea matInput [(ngModel)]=\"comment\"></textarea>\n    <button mat-raised-button color=\"primary\" class=\"send-btn\" (click)=\"addComment()\">\n      Send\n    </button>\n  </mat-form-field>\n</div>\n<div class=\"comments-container\" *ngIf=\"item\">\n  <div class=\"comment\" *ngFor=\"let comment of item.comments\">\n    <p class=\"text\">{{comment.comment}}</p>\n    <p class=\"author\">By: {{comment.author}}</p>\n  </div>\n</div>\n\n\n";
     /***/
   },
 
@@ -2801,10 +2801,7 @@
 
       ngOnInit() {
         this.itemsManagement.getItems(this.collectionId).subscribe(items => this.items = items);
-
-        if (this.auth.isLoggedIn()) {
-          this.collManagement.getCollectionById(this.collectionId).subscribe(coll => this.patient = coll);
-        }
+        this.collManagement.getCollectionById(this.collectionId).subscribe(coll => this.patient = coll);
       }
 
       hasAccess() {
