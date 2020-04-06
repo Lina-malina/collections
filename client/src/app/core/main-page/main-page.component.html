@@ -1,6 +1,8 @@
 <div class="collections-container">
   <mat-card *ngFor="let collection of collections">
     <mat-card-title>{{collection.fullName}}</mat-card-title>
+    <img *ngIf="collection.isMale" mat-card-image src="https://tricityescaperooms.com/wp-content/uploads/2018/01/person-placeholder-male-5.jpg" alt="person placeholder">
+    <img *ngIf="!collection.isMale" mat-card-image src="https://www.hopkinsusfhp.org/wp-content/uploads/2018/02/person-placeholder-300x275.jpg" alt="person placeholder">
     <mat-card-content>
       <p>{{collection.dateOfBirth | date}}</p>
     </mat-card-content>

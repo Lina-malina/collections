@@ -10,4 +10,13 @@ mat-card {
   margin-bottom: 20px;
   position: relative;
   padding-right: 30px;
+  img {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+}
+.mat-card-image {
+  width: calc(25% + 32px);
+  margin: 0;
 }

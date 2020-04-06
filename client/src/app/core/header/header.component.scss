@@ -7,4 +7,7 @@ nav {
 .search-container {
   display: flex;
   align-items: center;
+  input {
+    border: 1px solid gray;
+  }
 }
