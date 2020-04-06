@@ -25,9 +25,7 @@ export class CollectionComponent implements OnInit {
 
   ngOnInit() {
     this.itemsManagement.getItems(this.collectionId).subscribe(items => this.items = items);
-    if (this.auth.isLoggedIn()) {
-      this.collManagement.getCollectionById(this.collectionId).subscribe(coll => this.patient = coll);
-    }
+    this.collManagement.getCollectionById(this.collectionId).subscribe(coll => this.patient = coll);
   }
   public hasAccess(): boolean {
     return this.auth.isLoggedIn() && (this.auth.getUserDetails().isAdmin || this.auth.getUserDetails()._id === this.patient.authorId);

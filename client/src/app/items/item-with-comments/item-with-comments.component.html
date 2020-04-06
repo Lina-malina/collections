@@ -21,7 +21,7 @@
     </mat-card-content>
   </mat-card>
 </div>
-<div class="comment-textarea">
+<div class="comment-textarea" *ngIf="auth.isLoggedIn()">
   <mat-form-field appearance="fill">
     <mat-label>Leave a comment</mat-label>
     <textarea matInput [(ngModel)]="comment"></textarea>

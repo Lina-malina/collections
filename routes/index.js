@@ -22,14 +22,14 @@ router.post('/login', ctrlAuth.login);
 
 router.get('/collections', ctrlCollections.getCollections);
 router.get('/collections/user/:userId', auth, ctrlCollections.getUserCollections);
-router.get('/collections/:id', auth, ctrlCollections.getCollectionById);
+router.get('/collections/:id', ctrlCollections.getCollectionById);
 router.post('/collections', auth, ctrlCollections.addCollection);
 router.post('/collections/:id', auth, ctrlCollections.editCollection);
 router.delete('/collections/:id', auth, ctrlCollections.deleteCollection);
 
 router.get('/items', ctrlItems.getItems);
 router.get('/search-items', ctrlItems.searchItems);
-router.get('/items/:id', auth, ctrlItems.getItemById)
+router.get('/items/:id', ctrlItems.getItemById)
 router.post('/items', auth, ctrlItems.addItem);
 router.post('/items/:id', auth, ctrlItems.editItem);
 router.delete('/items/:id', auth, ctrlItems.deleteItem);

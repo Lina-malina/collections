@@ -18,7 +18,7 @@ export class ItemWithCommentsComponent implements OnInit {
   constructor(
     private itemsManagement: ItemsManagementService,
     private route: ActivatedRoute,
-    private auth: AuthService) { }
+    public auth: AuthService) { }
 
   ngOnInit() {
     this.itemsManagement.getItemById(this.itemId).subscribe(item => this.item = item);
