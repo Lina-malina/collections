@@ -185,7 +185,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"items-container\">\n  <mat-card *ngFor=\"let item of items\" [routerLink]=\"['/items/' + item._id + '/comments']\">\n    <mat-card-title>{{item.name}}</mat-card-title>\n    <mat-card-subtitle *ngIf=\"item.isGeneric\">Generic</mat-card-subtitle>\n    <mat-card-subtitle *ngIf=\"!item.isGeneric\">Brand name</mat-card-subtitle>\n    <mat-card-content>\n      <p>Medicine form: {{item.form}}</p>\n      <p>Medicine class: {{item.description}}</p>\n    </mat-card-content>\n    <mat-card-footer>By: {{item.authorName}}</mat-card-footer>\n  </mat-card>\n</div>\n";
+    __webpack_exports__["default"] = "<div class=\"items-container\">\n  <mat-card *ngFor=\"let item of items\" [style.background-color]=\"item.isDrug ? 'pink' : item.isPsycho ? 'yellow' : 'gray'\"  [routerLink]=\"['/items/' + item._id + '/comments']\">\n    <mat-card-title>Prescription, {{item.payment}} payment</mat-card-title>\n    <mat-card-subtitle>Doctor: {{item.authorName}}</mat-card-subtitle>\n    <mat-card-subtitle>Patient: {{item.collectionName}}</mat-card-subtitle>\n    <mat-card-content>\n      <div>\n        <span>Rp.: </span>\n        <span> {{item.form | titlecase}}</span>\n        <span> {{item.name}}</span>\n        <span> {{item.dose}}</span>\n      </div>\n      <div>\n        <span>D.t.d. N.: </span>\n        <span>{{item.amount}}</span>\n      </div>\n      <div>\n        <span>S.: </span>\n        <span>{{item.prescription}}</span>\n      </div>\n    </mat-card-content>\n  </mat-card>\n</div>\n";
     /***/
   },
 
@@ -205,7 +205,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<nav *ngIf=\"patient\">\n  <h3 *ngIf=\"patient.isMale\">Mr. {{patient.fullName}} prescriptions</h3>\n  <h3 *ngIf=\"!patient.isMale\">Mrs. {{patient.fullName}} prescriptions</h3>\n  <button mat-icon-button class=\"add-btn\" *ngIf=\"hasAccess()\" [routerLink]=\"['/collections/' + collectionId + '/items/new']\">\n    <i class=\"material-icons\">add_box</i>\n  </button>\n</nav>\n<div class=\"collection-container\" *ngIf=\"patient\">\n  <mat-card *ngFor=\"let item of items\" [style.background-color]=\"item.isDrug ? 'pink' : item.isPsycho ? 'yellow' : 'gray'\"  [routerLink]=\"['/items/' + item._id + '/comments']\" [queryParams]=\"{ patientName: patient.fullName}\">\n    <mat-card-title>Prescription, {{item.payment}} payment</mat-card-title>\n    <mat-card-subtitle>Doctor: {{item.authorName}}</mat-card-subtitle>\n    <mat-card-subtitle>Patient: {{patient.fullName}}</mat-card-subtitle>\n    <mat-card-content>\n      <div>\n        <span>Rp.: </span>\n        <span> {{item.form | titlecase}}</span>\n        <span> {{item.name}}</span>\n        <span> {{item.dose}}</span>\n      </div>\n      <div>\n        <span>D.t.d. N.: </span>\n        <span>{{item.amount}}</span>\n      </div>\n      <div>\n        <span>S.: </span>\n        <span>{{item.prescription}}</span>\n      </div>\n    </mat-card-content>\n    <mat-divider></mat-divider>\n    <button mat-icon-button class=\"edit-btn\" *ngIf=\"hasAccess()\" [routerLink]=\"['/collections/' + collectionId + '/items/' + item._id]\">\n      <i class=\"material-icons edit\">edit</i>\n    </button>\n    <button mat-icon-button class=\"delete-btn\" *ngIf=\"hasAccess()\" (click)=\"deleteItem(item._id)\">\n      <i class=\"material-icons delete\">delete</i>\n    </button>\n  </mat-card>\n</div>\n\n\n";
+    __webpack_exports__["default"] = "<nav *ngIf=\"patient\">\n  <h3 *ngIf=\"patient.isMale\">Mr. {{patient.fullName}} prescriptions</h3>\n  <h3 *ngIf=\"!patient.isMale\">Mrs. {{patient.fullName}} prescriptions</h3>\n  <button mat-icon-button class=\"add-btn\" *ngIf=\"hasAccess()\" [routerLink]=\"['/collections/' + collectionId + '/items/new']\" [queryParams]=\"{patientName: patient.fullName}\">\n    <i class=\"material-icons\">add_box</i>\n  </button>\n</nav>\n<div class=\"collection-container\" *ngIf=\"patient\">\n  <mat-card *ngFor=\"let item of items\" [style.background-color]=\"item.isDrug ? 'pink' : item.isPsycho ? 'yellow' : 'gray'\"  [routerLink]=\"['/items/' + item._id + '/comments']\">\n    <mat-card-title>Prescription, {{item.payment}} payment</mat-card-title>\n    <mat-card-subtitle>Doctor: {{item.authorName}}</mat-card-subtitle>\n    <mat-card-subtitle>Patient: {{patient.fullName}}</mat-card-subtitle>\n    <mat-card-content>\n      <div>\n        <span>Rp.: </span>\n        <span> {{item.form | titlecase}}</span>\n        <span> {{item.name}}</span>\n        <span> {{item.dose}}</span>\n      </div>\n      <div>\n        <span>D.t.d. N.: </span>\n        <span>{{item.amount}}</span>\n      </div>\n      <div>\n        <span>S.: </span>\n        <span>{{item.prescription}}</span>\n      </div>\n    </mat-card-content>\n    <mat-divider></mat-divider>\n    <button mat-icon-button class=\"edit-btn\" *ngIf=\"hasAccess()\" [routerLink]=\"['/collections/' + collectionId + '/items/' + item._id]\">\n      <i class=\"material-icons edit\">edit</i>\n    </button>\n    <button mat-icon-button class=\"delete-btn\" *ngIf=\"hasAccess()\" (click)=\"deleteItem(item._id, $event)\">\n      <i class=\"material-icons delete\">delete</i>\n    </button>\n  </mat-card>\n</div>\n\n\n";
     /***/
   },
 
@@ -2334,7 +2334,7 @@
       component: _items_user_page_component__WEBPACK_IMPORTED_MODULE_5__["UserPageComponent"],
       canActivate: [_auth_guards_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]]
     }, {
-      path: 'search',
+      path: 'search/:value',
       component: _search_search_component__WEBPACK_IMPORTED_MODULE_6__["SearchComponent"]
     }];
     let CoreRoutingModule = class CoreRoutingModule {};
@@ -2497,7 +2497,7 @@
 
       search() {
         if (this.searchValue) {
-          this.router.navigateByUrl('search');
+          this.router.navigateByUrl('search/' + this.searchValue);
         }
       }
 
@@ -2632,7 +2632,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".items-container {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n\nmat-card {\n  width: 300px;\n  max-width: 300px;\n  margin-right: 20px;\n  cursor: pointer;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29yZS9zZWFyY2gvQzpcXFByb2plY3RzXFxpdHJhXFxjb2xsZWN0aW9uc1xcY2xpZW50L3NyY1xcYXBwXFxjb3JlXFxzZWFyY2hcXHNlYXJjaC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvY29yZS9zZWFyY2gvc2VhcmNoLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usb0JBQUE7RUFBQSxhQUFBO0VBQ0Esd0JBQUE7VUFBQSx1QkFBQTtBQ0NGOztBRENBO0VBQ0UsWUFBQTtFQUNBLGdCQUFBO0VBQ0Esa0JBQUE7RUFDQSxlQUFBO0FDRUYiLCJmaWxlIjoic3JjL2FwcC9jb3JlL3NlYXJjaC9zZWFyY2guY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuaXRlbXMtY29udGFpbmVyIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcbm1hdC1jYXJkIHtcclxuICB3aWR0aDogMzAwcHg7XHJcbiAgbWF4LXdpZHRoOiAzMDBweDtcclxuICBtYXJnaW4tcmlnaHQ6IDIwcHg7XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG59XHJcbiIsIi5pdGVtcy1jb250YWluZXIge1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cblxubWF0LWNhcmQge1xuICB3aWR0aDogMzAwcHg7XG4gIG1heC13aWR0aDogMzAwcHg7XG4gIG1hcmdpbi1yaWdodDogMjBweDtcbiAgY3Vyc29yOiBwb2ludGVyO1xufSJdfQ== */";
+    __webpack_exports__["default"] = ".items-container {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n\nmat-card {\n  width: 300px;\n  max-width: 300px;\n  margin-right: 20px;\n  color: black;\n  cursor: pointer;\n}\n\nmat-card-subtitle {\n  color: black;\n}\n\nmat-divider {\n  border-top-color: black;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29yZS9zZWFyY2gvQzpcXFByb2plY3RzXFxpdHJhXFxjb2xsZWN0aW9uc1xcY2xpZW50L3NyY1xcYXBwXFxjb3JlXFxzZWFyY2hcXHNlYXJjaC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvY29yZS9zZWFyY2gvc2VhcmNoLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usb0JBQUE7RUFBQSxhQUFBO0VBQ0Esd0JBQUE7VUFBQSx1QkFBQTtBQ0NGOztBRENBO0VBQ0UsWUFBQTtFQUNBLGdCQUFBO0VBQ0Esa0JBQUE7RUFDQSxZQUFBO0VBQ0EsZUFBQTtBQ0VGOztBREFBO0VBQ0UsWUFBQTtBQ0dGOztBRERBO0VBQ0UsdUJBQUE7QUNJRiIsImZpbGUiOiJzcmMvYXBwL2NvcmUvc2VhcmNoL3NlYXJjaC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5pdGVtcy1jb250YWluZXIge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbn1cclxubWF0LWNhcmQge1xyXG4gIHdpZHRoOiAzMDBweDtcclxuICBtYXgtd2lkdGg6IDMwMHB4O1xyXG4gIG1hcmdpbi1yaWdodDogMjBweDtcclxuICBjb2xvcjogYmxhY2s7XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG59XHJcbm1hdC1jYXJkLXN1YnRpdGxlIHtcclxuICBjb2xvcjogYmxhY2s7XHJcbn1cclxubWF0LWRpdmlkZXIge1xyXG4gIGJvcmRlci10b3AtY29sb3I6IGJsYWNrO1xyXG59XHJcbiIsIi5pdGVtcy1jb250YWluZXIge1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cblxubWF0LWNhcmQge1xuICB3aWR0aDogMzAwcHg7XG4gIG1heC13aWR0aDogMzAwcHg7XG4gIG1hcmdpbi1yaWdodDogMjBweDtcbiAgY29sb3I6IGJsYWNrO1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbm1hdC1jYXJkLXN1YnRpdGxlIHtcbiAgY29sb3I6IGJsYWNrO1xufVxuXG5tYXQtZGl2aWRlciB7XG4gIGJvcmRlci10b3AtY29sb3I6IGJsYWNrO1xufSJdfQ== */";
     /***/
   },
 
@@ -2673,21 +2673,32 @@
     var src_app_items_services_items_management_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! src/app/items/services/items-management.service */
     "./src/app/items/services/items-management.service.ts");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
 
     let SearchComponent = class SearchComponent {
-      constructor(itemsManagement) {
+      constructor(itemsManagement, router) {
         this.itemsManagement = itemsManagement;
+        this.router = router;
         this.items = [];
       }
 
       ngOnInit() {
-        this.itemsManagement.getAllItems().subscribe(items => this.items = items);
+        this.router.params.subscribe(routeParams => {
+          this.itemsManagement.searchItems(routeParams.value).subscribe(items => this.items = items);
+        });
       }
 
     };
 
     SearchComponent.ctorParameters = () => [{
       type: src_app_items_services_items_management_service__WEBPACK_IMPORTED_MODULE_2__["ItemsManagementService"]
+    }, {
+      type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]
     }];
 
     SearchComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -2800,7 +2811,8 @@
         return this.auth.isLoggedIn() && (this.auth.getUserDetails().isAdmin || this.auth.getUserDetails()._id === this.patient.authorId);
       }
 
-      deleteItem(id) {
+      deleteItem(id, event) {
+        event.stopPropagation();
         this.itemsManagement.deleteItem(id).subscribe(() => this.itemsManagement.getItems(this.collectionId).subscribe(items => this.items = items));
       }
 
@@ -3099,6 +3111,7 @@
           authorId: this.auth.getUserDetails()._id,
           authorName: this.auth.getUserDetails().name,
           collectionId: this.collectionId,
+          collectionName: null,
           comments: null
         };
         this.isCreationMode = true;
@@ -3109,6 +3122,8 @@
           this.isCreationMode = false;
           this.itemsManagement.getItemById(this.currentItemId).subscribe(currentItem => this.newItem = currentItem);
         }
+
+        this.route.queryParamMap.subscribe(params => this.newItem.collectionName = params.get('patientName'));
       }
 
       addItem() {
@@ -3391,8 +3406,12 @@
         });
       }
 
-      getAllItems() {
-        return this.http.get('/api/search-items');
+      searchItems(value) {
+        return this.http.get('/api/search-items', {
+          params: {
+            value
+          }
+        });
       }
 
       getItemById(itemId) {
